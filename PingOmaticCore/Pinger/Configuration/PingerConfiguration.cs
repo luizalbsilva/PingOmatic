@@ -14,11 +14,11 @@ namespace PingOmaticCore.Pinger.Configuration
         /// <summary>
         /// URL to be pinged
         /// </summary>
-        public Uri Uri { get; private set; }
+        public Uri Uri { get; set; }
         /// <summary>
         /// Time interval between calls
         /// </summary>
-        public TimeSpan Interval { get; private set; }
+        public TimeSpan Interval { get; set; }
         #endregion
 
         /// <summary>

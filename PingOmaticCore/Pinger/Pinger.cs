@@ -48,6 +48,7 @@ namespace PingOmaticCore.Pinger
         /// </summary>
         public void Start()
         {
+            Status = PingerStatus.RUNNING;
             worker = new Thread(() =>
             {
                 while (Status == PingerStatus.RUNNING)
@@ -67,7 +68,10 @@ namespace PingOmaticCore.Pinger
         {
             Status = PingerStatus.IDLE;
             Task.Delay(20000)
-                .ContinueWith((t) => { if (worker.IsAlive) worker.Abort(); });
+                .ContinueWith((t) => {
+                    if (worker.IsAlive)
+                        worker.Abort();
+                });
         }
 
         /// <summary>

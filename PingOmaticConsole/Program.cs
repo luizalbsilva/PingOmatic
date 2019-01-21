@@ -1,11 +1,7 @@
-﻿using PingOmaticCore;
-using PingOmaticCore.Orchestrator;
+﻿using PingOmaticCore.Orchestrator;
 using PingOmaticCore.Orchestrator.Configuration;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace PingOmaticConsole
 {
@@ -56,6 +52,14 @@ namespace PingOmaticConsole
             orchestrator.Start();
             while (Console.ReadKey().Key != ConsoleKey.Escape) ;
             orchestrator.Stop();
+
+            int seg = 20;
+            Timer t = new Timer(
+                state => Console.Write($"\rWait for about {seg--} seconds while we free our resources."),
+                null,
+                0,
+                1000
+                );
         }
 
         private void Help()
@@ -71,7 +75,7 @@ namespace PingOmaticConsole
 
         private void Header()
         {
-            Console.WriteLine("PingOmatic v. 1.0.0 - luizalbsilva@gmail.com");
+            Console.WriteLine("PingOmatic v. 1.0.0");
             Console.WriteLine("Distributed freely under GPL 3.0");
             Console.WriteLine("\n");
         }
@@ -79,10 +83,9 @@ namespace PingOmaticConsole
         static void Main(string[] args)
         {
             //new Program(new string[] { "-r", @"C:\Temp\PingOmatic.json" }).Run();
-            new Program(new string[] { @"C:\Temp\PingOmatic.json" }).Run();
+            //new Program(new string[] { @"C:\Temp\PingOmatic.json" }).Run();
             //new Program(new string[] { "-r" }).Run();
-            //new Program(args).Run();
-            Console.ReadKey();
+            new Program(args).Run();
         }
     }
 
