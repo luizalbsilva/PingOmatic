@@ -82,7 +82,9 @@ namespace PingOmaticCore.Pinger
         {
             var client = new HttpClient();
             var task = client.GetAsync(Uri);
-            task.ContinueWith((s)=>client.Dispose());
+            task
+                .ContinueWith((s) => client.Dispose())
+                .ContinueWith(s=> Console.WriteLine($"{DateTime.Now:dd/MM/yyyy hh:mm:ss} pinged {Uri}"));
             return task;
         }
     }

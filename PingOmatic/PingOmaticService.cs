@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using PingOmaticCore;
+using PingOmaticCore.Orchestrator;
 using PingOmaticCore.Orchestrator.Configuration;
 using System;
 using System.ServiceProcess;
